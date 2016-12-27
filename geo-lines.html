@@ -5,12 +5,12 @@
    </head>
    <body style="height: 100%; margin: 0">
        <div id="container" style="height: 100%"></div>
-       <script type="text/javascript" src="js/echarts-all-3.js"></script>
-       <script type="text/javascript" src="js/dataTool.min.js"></script>
-       <script type="text/javascript" src="js/china.js"></script>
-       <script type="text/javascript" src="js/world.js"></script>
-       <script type="text/javascript" src="js/api.js"></script>
-       <script type="text/javascript" src="js/bmap.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/echarts-all-3.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/dataTool.min.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/china.js"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/map/js/world.js"></script>
+       <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=ZUONbpqGBsYGXNIYHicvbAbM"></script>
+       <script type="text/javascript" src="http://echarts.baidu.com/gallery/vendors/echarts/extension/bmap.min.js"></script>
        <script type="text/javascript">
 var dom = document.getElementById("container");
 var myChart = echarts.init(dom);
@@ -27,7 +27,6 @@ var geoCoordMap = {
     '丽水': [119.5642,28.1854],
     '乌鲁木齐': [87.9236,43.5883],
     '佛山': [112.8955,23.1097],
-	'顺德':[112.0000,22.1097],
     '保定': [115.0488,39.0948],
     '兰州': [103.5901,36.3043],
     '包头': [110.3467,41.4899],
@@ -122,7 +121,6 @@ var geoCoordMap = {
     '郑州': [113.4668,34.6234],
     '鄂尔多斯': [108.9734,39.2487],
     '重庆': [107.7539,30.1904],
-	'遵义':[106.7539,27.5000],
     '金华': [120.0037,29.1028],
     '铜川': [109.0393,35.1947],
     '银川': [106.3586,38.1775],
@@ -131,37 +129,21 @@ var geoCoordMap = {
     '长沙': [113.0823,28.2568],
     '长治': [112.8625,36.4746],
     '阳泉': [113.4778,38.0951],
-    '青岛(17条主线路)': [120.4651,36.3373],
-	'胶州':[118.4651,37.0000],
-	'黄岛':[119.0000,35.8000],
+    '青岛': [120.4651,36.3373],
     '韶关': [113.7964,24.7028]
 };
 
 var BJData = [
-    [{name:'青岛(17条主线路)'}, {name:'合肥',value:95}],
-    [{name:'青岛(17条主线路)'}, {name:'沈阳',value:90}],
-    [{name:'青岛(17条主线路)'}, {name:'大连',value:80}],
-    [{name:'青岛(17条主线路)'}, {name:'佛山',value:60}],
-    [{name:'青岛(17条主线路)'}, {name:'胶州',value:40}],
-    [{name:'青岛(17条主线路)'}, {name:'重庆',value:20}],
-	[{name:'青岛(17条主线路)'}, {name:'黄岛',value:20}],
-	[{name:'青岛(17条主线路)'}, {name:'遵义',value:20}],
-	[{name:'青岛(17条主线路)'}, {name:'郑州',value:20}],
-	[{name:'青岛(17条主线路)'}, {name:'顺德',value:20}],
-	[{name:'青岛(17条主线路)'}, {name:'武汉',value:20}],
-	
-	[{name:'合肥'}, {name:'青岛(17条主线路)',value:95}],
-	[{name:'沈阳'}, {name:'青岛(17条主线路)',value:90}],
-	[{name:'大连'}, {name:'青岛(17条主线路)',value:80}],
-	[{name:'重庆'}, {name:'青岛(17条主线路)',value:20}],
-	[{name:'佛山'}, {name:'青岛(17条主线路)',value:60}],
-	[{name:'胶州'}, {name:'青岛(17条主线路)',value:40}],
-	[{name:'重庆'}, {name:'青岛(17条主线路)',value:20}],
-	[{name:'黄岛'}, {name:'青岛(17条主线路)',value:20}],
-	[{name:'遵义'}, {name:'青岛(17条主线路)',value:20}],
-	[{name:'郑州'}, {name:'青岛(17条主线路)',value:20}],
-	[{name:'顺德'}, {name:'青岛(17条主线路)',value:20}],
-	[{name:'武汉'}, {name:'青岛(17条主线路)',value:20}],
+    [{name:'北京'}, {name:'上海',value:95}],
+    [{name:'北京'}, {name:'广州',value:90}],
+    [{name:'北京'}, {name:'大连',value:80}],
+    [{name:'北京'}, {name:'南宁',value:70}],
+    [{name:'北京'}, {name:'南昌',value:60}],
+    [{name:'北京'}, {name:'拉萨',value:50}],
+    [{name:'北京'}, {name:'长春',value:40}],
+    [{name:'北京'}, {name:'包头',value:30}],
+    [{name:'北京'}, {name:'重庆',value:20}],
+    [{name:'北京'}, {name:'常州',value:10}]
 ];
 
 var SHData = [
@@ -197,7 +179,6 @@ var convertData = function (data) {
     for (var i = 0; i < data.length; i++) {
         var dataItem = data[i];
         var fromCoord = geoCoordMap[dataItem[0].name];
-		
         var toCoord = geoCoordMap[dataItem[1].name];
         if (fromCoord && toCoord) {
             res.push({
@@ -212,12 +193,11 @@ var convertData = function (data) {
 
 var color = ['#a6c84c', '#ffa022', '#46bee9'];
 var series = [];
-[['青岛(17条主线路)', BJData], ['上海', SHData], ['广州', GZData]].forEach(function (item, i) {
+[['北京', BJData], ['上海', SHData], ['广州', GZData]].forEach(function (item, i) {
     series.push({
-        name: item[0],
+        name: item[0] + ' Top10',
         type: 'lines',
         zlevel: 1,
-		//polyline:true,
         effect: {
             show: true,
             period: 6,
@@ -232,20 +212,18 @@ var series = [];
                 curveness: 0.2
             }
         },
-        data: convertData(item[1]),
-
+        data: convertData(item[1])
     },
     {
-        name: item[0],
+        name: item[0] + ' Top10',
         type: 'lines',
         zlevel: 2,
         effect: {
             show: true,
             period: 6,
             trailLength: 0,
-            symbol:'circle',
-			//symbol: planePath,
-            symbolSize:10
+            symbol: planePath,
+            symbolSize: 15
         },
         lineStyle: {
             normal: {
@@ -258,7 +236,7 @@ var series = [];
         data: convertData(item[1])
     },
     {
-        name: item[0],
+        name: item[0] + ' Top10',
         type: 'effectScatter',
         coordinateSystem: 'geo',
         zlevel: 2,
@@ -292,22 +270,21 @@ var series = [];
 option = {
     backgroundColor: '#404a59',
     title : {
-        text: '大屏展示',
-        subtext: 'Haier',
+        text: '模拟迁徙',
+        subtext: '数据纯属虚构',
         left: 'center',
         textStyle : {
             color: '#fff'
         }
     },
     tooltip : {
-		
         trigger: 'item'
     },
     legend: {
         orient: 'vertical',
         top: 'bottom',
         left: 'right',
-        data:['青岛(17条主线路)', '上海', '广州'],
+        data:['北京 Top10', '上海 Top10', '广州 Top10'],
         textStyle: {
             color: '#fff'
         },
@@ -317,10 +294,7 @@ option = {
         map: 'china',
         label: {
             emphasis: {
-                show: true,
-				textStyle:{
-					color:'#000'
-				}
+                show: false
             }
         },
         roam: true,
