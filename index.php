@@ -46,32 +46,13 @@ var Seventeen = [
 	[{name:'顺德'}, {name:'青岛(17条主线路)',value:20}],
 	[{name:'武汉'}, {name:'青岛(17条主线路)',value:20}],*/
 ];
+<?php	   
+echo "var red =[
+	[{name:'青岛(17条主线路)'},{name:'合肥',value:95}]
+];"
+?>
 
-var SHData = [
-    [{name:'上海'},{name:'包头',value:95}],
-    [{name:'上海'},{name:'昆明',value:90}],
-    [{name:'上海'},{name:'广州',value:80}],
-    [{name:'上海'},{name:'郑州',value:70}],
-    [{name:'上海'},{name:'长春',value:60}],
-    [{name:'上海'},{name:'重庆',value:50}],
-    [{name:'上海'},{name:'长沙',value:40}],
-    [{name:'上海'},{name:'北京',value:30}],
-    [{name:'上海'},{name:'丹东',value:20}],
-    [{name:'上海'},{name:'大连',value:10}]
-];
 
-var GZData = [
-    [{name:'广州'},{name:'福州',value:95}],
-    [{name:'广州'},{name:'太原',value:90}],
-    [{name:'广州'},{name:'长春',value:80}],
-    [{name:'广州'},{name:'重庆',value:70}],
-    [{name:'广州'},{name:'西安',value:60}],
-    [{name:'广州'},{name:'成都',value:50}],
-    [{name:'广州'},{name:'常州',value:40}],
-    [{name:'广州'},{name:'北京',value:30}],
-    [{name:'广州'},{name:'北海',value:20}],
-    [{name:'广州'},{name:'海口',value:10}]
-];
 
 var planePath = 'path://M1705.06,1318.313v-89.254l-319.9-221.799l0.073-208.063c0.521-84.662-26.629-121.796-63.961-121.491c-37.332-0.305-64.482,36.829-63.961,121.491l0.073,208.063l-319.9,221.799v89.254l330.343-157.288l12.238,241.308l-134.449,92.931l0.531,42.034l175.125-42.917l175.125,42.917l0.531-42.034l-134.449-92.931l12.238-241.308L1705.06,1318.313z';
 
@@ -86,20 +67,24 @@ var convertData = function (data) {
             res.push({
                 fromName: dataItem[0].name,
                 toName: dataItem[1].name,
-                coords: [fromCoord, toCoord]
+                coords: [fromCoord, toCoord],
+			
+				
+				
             });
         }
     }
     return res;
 };
 
-var color = ['#a6c84c', '#ffa022', '#46bee9'];
+var color = ['#46bee9', '#ffa022', '#46bee9'];
 var series = [];
-[['青岛(17条主线路)', Seventeen], ['上海', SHData], ['广州', GZData]].forEach(function (item, i) {
+[['青岛(17条主线路)', Seventeen],['red',red]].forEach(function (item, i) {
     series.push({
         name: item[0],
         type: 'lines',
         zlevel: 1,
+		//polyline:true,
         effect: {
             show: true,
             period: 6,
@@ -127,17 +112,19 @@ var series = [];
             trailLength: 0,
             symbol:'circle',
 			//symbol: planePath,
-            symbolSize:10
+            symbolSize:10,
         },
         lineStyle: {
             normal: {
-                color: color[i],
+                color:color[i],
                 width: 1,
                 opacity: 0.4,
                 curveness: 0.2
             }
         },
-        data: convertData(item[1])
+        
+		data: convertData(item[1]),
+		
     },
     {
         name: item[0],
@@ -159,8 +146,8 @@ var series = [];
         },*/
         itemStyle: {
             normal: {
-                color: color[i]
-            }
+                color: color[i],
+            },
         },
         data: item[1].map(function (dataItem) {
             return {
@@ -189,7 +176,7 @@ option = {
         orient: 'vertical',
         top: 'bottom',
         left: 'right',
-        data:['青岛(17条主线路)', '上海', '广州'],
+        data:['青岛(17条主线路)'],
         textStyle: {
             color: '#fff'
         },
@@ -205,6 +192,7 @@ option = {
 				}
             }
         },
+		
         roam: true,
         itemStyle: {
             normal: {
@@ -214,19 +202,34 @@ option = {
             emphasis: {
                 areaColor: '#2a333d'
             }
-        }
+        },
+		regions:[{
+			name:'沈阳',
+			selected:true,
+			itemStyle:{
+				normal:{
+					color:'red'
+				}
+			}
+		}],
     },
-    series: series
+    series:series
 };
 if (option && typeof option === "object") {
     myChart.setOption(option, true);
 }
-myChart.on('click',function(option){
+/*myChart.on('click',function(option){
 		/*$("#container").load("tooltip.php",function(response,status,xhr){
 			
-		});*/
+		});
 	  window.location.href="http://10.135.6.121/zabbix/report2.php?config=0&filter_timesince=20161225000000&filter_timetill=20161226000000&filter_groupid=9&filter_hostid=10123&filter_timesince_year=2016&filter_timesince_month=12&filter_timesince_day=25&filter_timesince_hour=00&filter_timesince_minute=00&filter_timetill_year=2016&filter_timetill_month=12&filter_timetill_day=26&filter_timetill_hour=00&filter_timetill_minute=00&filter_set=过滤";
-})
+})*/
        </script>
+<div id="red" class="red"></div>
+<script>
+	$('#red').css({
+	'top':'550px','left':'700px'
+});
+</script>
    </body>
 </html>
