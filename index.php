@@ -32,6 +32,37 @@ var Seventeen = [
 	[{name:'青岛(17条主线路)'}, {name:'郑州',value:20}],
 	[{name:'青岛(17条主线路)'}, {name:'顺德',value:20}],
 	[{name:'青岛(17条主线路)'}, {name:'武汉',value:20}],
+	[{name:'青岛(17条主线路)'}, {name:'天津',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'乌鲁木齐',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'济南',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'唐山',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'杭州',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'北京',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'西安',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'厦门',value:30}], 
+	[{name:'青岛(17条主线路)'}, {name:'襄樊',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'无锡',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'西宁',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'广州',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'烟台',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'呼和浩特',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'福州',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'哈尔滨',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'胶南',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'银川',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'长春',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'深圳',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'昆明',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'贵阳',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'兰州',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'南昌',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'锦州',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'宁波',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'上海',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'南宁',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'南京',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'海口',value:30}],
+	[{name:'青岛(17条主线路)'}, {name:'成都',value:30}],
 	
 	/*[{name:'合肥'}, {name:'青岛(17条主线路)',value:95}],
 	[{name:'沈阳'}, {name:'青岛(17条主线路)',value:90}],
@@ -77,7 +108,7 @@ var convertData = function (data) {
     return res;
 };
 
-var color = ['#46bee9', '#ffa022', '#46bee9'];
+var color = ['#46bee9', 'red', '#46bee9'];
 var series = [];
 [['青岛(17条主线路)', Seventeen],['red',red]].forEach(function (item, i) {
     series.push({
@@ -96,7 +127,7 @@ var series = [];
             normal: {
                 color: color[i],
                 width: 0,
-                curveness: 0.2
+                curveness: 0
             }
         },
         data: convertData(item[1]),
@@ -114,12 +145,12 @@ var series = [];
 			//symbol: planePath,
             symbolSize:10,
         },
-        lineStyle: {
+		lineStyle: {
             normal: {
                 color:color[i],
-                width: 1,
+                width: 0.2,
                 opacity: 0.4,
-                curveness: 0.2
+                curveness: 0
             }
         },
         
@@ -127,7 +158,7 @@ var series = [];
 		
     },
     {
-        name: item[0],
+       name: item[0],
         type: 'effectScatter',
         coordinateSystem: 'geo',
         zlevel: 2,
@@ -141,7 +172,8 @@ var series = [];
                 formatter: '{b}'
             }
         },
-        /*symbolSize: function (val) {
+		/*
+        symbolSize: function (val) {
             return val[2] / 8;
         },*/
         itemStyle: {
@@ -172,7 +204,7 @@ option = {
     tooltip : {
         trigger: 'item'
     },
-    legend: {
+    /*legend: {
         orient: 'vertical',
         top: 'bottom',
         left: 'right',
@@ -181,7 +213,7 @@ option = {
             color: '#fff'
         },
         selectedMode: 'single'
-    },
+    },*/
     geo: {
         map: 'china',
         label: {
@@ -225,11 +257,7 @@ if (option && typeof option === "object") {
 	  window.location.href="http://10.135.6.121/zabbix/report2.php?config=0&filter_timesince=20161225000000&filter_timetill=20161226000000&filter_groupid=9&filter_hostid=10123&filter_timesince_year=2016&filter_timesince_month=12&filter_timesince_day=25&filter_timesince_hour=00&filter_timesince_minute=00&filter_timetill_year=2016&filter_timetill_month=12&filter_timetill_day=26&filter_timetill_hour=00&filter_timetill_minute=00&filter_set=过滤";
 })*/
        </script>
-<div id="red" class="red"></div>
-<script>
-	$('#red').css({
-	'top':'550px','left':'700px'
-});
-</script>
+
+
    </body>
 </html>
