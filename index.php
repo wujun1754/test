@@ -64,20 +64,11 @@ var Seventeen = [
 	[{name:'青岛(17条主线路)'}, {name:'海口',value:30}],
 	[{name:'青岛(17条主线路)'}, {name:'成都',value:30}],
 	
-	/*[{name:'合肥'}, {name:'青岛(17条主线路)',value:95}],
-	[{name:'沈阳'}, {name:'青岛(17条主线路)',value:90}],
-	[{name:'大连'}, {name:'青岛(17条主线路)',value:80}],
-	[{name:'重庆'}, {name:'青岛(17条主线路)',value:20}],
-	[{name:'佛山'}, {name:'青岛(17条主线路)',value:60}],
-	[{name:'胶州'}, {name:'青岛(17条主线路)',value:40}],
-	[{name:'重庆'}, {name:'青岛(17条主线路)',value:20}],
-	[{name:'黄岛'}, {name:'青岛(17条主线路)',value:20}],
-	[{name:'遵义'}, {name:'青岛(17条主线路)',value:20}],
-	[{name:'郑州'}, {name:'青岛(17条主线路)',value:20}],
-	[{name:'顺德'}, {name:'青岛(17条主线路)',value:20}],
-	[{name:'武汉'}, {name:'青岛(17条主线路)',value:20}],*/
+
 ];
-<?php	   
+<?php	
+include(conn/conn.php);
+		   
 echo "var red =[
 	[{name:'青岛(17条主线路)'},{name:'合肥',value:95}]
 ];"
