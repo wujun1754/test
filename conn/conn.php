@@ -3,8 +3,10 @@ $servername='10.135.6.253';
 $username='Wangluoshebei';
 $password='Wangluoshebei0532';
 
-$conn=new mysqli($servername,$username,$password);
-if($conn->connect_error){
-	die("连接失败：".$conn->connect_error);
+$con=mysqli_connect($servername,$username,$password,"zabbix");
+if(mysqli_connect_errno($con))
+{
+	echo "连接MySql失败：".mysqli_connect_error();
 }
+
 ?>
